@@ -5,9 +5,13 @@ const User = require('../lib/Models/User')
 const Artifact = require('../lib/Models/Artifact')
 
 router.get('/', (req, res) => {
+
     User.findById(req.user._doc._id)
     .populate('artifacts')
     .exec((err, user) => {
+        console.log("GET PROFILE")
+        console.log(user)
+        console.log(err)
         res.json(user.artifacts)
     })
 })
